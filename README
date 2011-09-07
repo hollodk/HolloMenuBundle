@@ -4,6 +4,45 @@ HolloMenuBundle
 :Date:      2011-09-07
 
 
+Introduction
+------------
+
+This menu has 3 sections:
+
+  - topMenu
+  - topRightMenu
+  - leftMenu
+
+You can call 3 different controllers from your template:
+
+  {% render "HolloMenuBundle:Menu:topMenu" %}
+
+Now an events is triggered which in this case will be:
+
+  - onTopMenuRender
+
+Now you have to create a listener in your bundle on one of the following events:
+
+  - onLeftMenuRender
+  - onTopMenuRender
+  - onTopRightMenuRender
+
+Here is a sample of what a listener can look like:
+
+  public function onTopMenuRender(\Hollo\MenuBundle\Event\FilterMenuEvent $event)
+  {
+    $menu = $event->getMenu();
+
+    $menu['view'] = array(
+      'name' => $this->translator->trans('View domains'),
+      'route' => $this->router->generate('hollo_bind_admindomain_index'),
+      'items' => array()
+    );
+  }
+
+The rest of the magic is located in the Resources/view/Menu/topMenu.html.twig file, do whatever you have to do with this file to fit your design.
+
+
 TODO
 ----
 
