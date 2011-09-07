@@ -5,7 +5,7 @@ namespace Hollo\MenuBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 
-class DefaultController extends Controller
+class MenuController extends Controller
 {
   public function topMenuAction()
   {
@@ -15,7 +15,7 @@ class DefaultController extends Controller
     $this->get('event_dispatcher')->dispatch(\Hollo\MenuBundle\Event\Events::onTopMenuRender, $event);
     $menu = $event->getMenu();
 
-    return $this->render('HolloMenuBundle:Default:topMenu.html.twig', array(
+    return $this->render('HolloMenuBundle:Menu:topMenu.html.twig', array(
       'menu' => $menu
     ));
   }
@@ -34,7 +34,7 @@ class DefaultController extends Controller
       }
     }
 
-    return $this->render('HolloMenuBundle:Default:leftMenu.html.twig', array(
+    return $this->render('HolloMenuBundle:Menu:leftMenu.html.twig', array(
       'menu' => $menu
     ));
   }
